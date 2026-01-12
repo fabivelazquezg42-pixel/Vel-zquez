@@ -1,0 +1,966 @@
+!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio - Desarrollador Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-principal: #1a6bc4;
+            --azul-oscuro: #0d4a8a;
+            --azul-claro: #4d9de0;
+            --azul-muy-claro: #e6f2ff;
+            --gris-claro: #f5f7fa;
+            --gris-oscuro: #333;
+            --blanco: #ffffff;
+            --sombra: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header y navegación */
+        header {
+            background-color: var(--azul-principal);
+            color: var(--blanco);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px var(--sombra);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--azul-muy-claro);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: var(--azul-muy-claro);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--blanco);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-principal), var(--azul-oscuro));
+            color: var(--blanco);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--azul-claro);
+            color: var(--blanco);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: 2px solid var(--azul-claro);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--azul-oscuro);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--azul-claro);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Sección sobre mí */
+        .about {
+            background-color: var(--blanco);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--sombra);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            color: var(--azul-oscuro);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Sección proyectos */
+        .projects {
+            background-color: var(--azul-muy-claro);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            font-size: 22px;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background-color: var(--azul-claro);
+            color: var(--blanco);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Sección reseñas */
+        .reviews {
+            background-color: var(--blanco);
+        }
+
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rating-form {
+            background-color: var(--azul-muy-claro);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px var(--sombra);
+        }
+
+        .rating-form h3 {
+            font-size: 24px;
+            color: var(--azul-oscuro);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--azul-oscuro);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--azul-claro);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .stars-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .star {
+            font-size: 32px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star.active {
+            color: #ffc107;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .review-card {
+            background-color: var(--azul-muy-claro);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px var(--sombra);
+            border-left: 5px solid var(--azul-claro);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--azul-oscuro);
+        }
+
+        .review-date {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .review-stars {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-col h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--azul-claro);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--azul-principal);
+            color: var(--blanco);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--azul-claro);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-text {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                font-size: 16px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                flex-direction: row;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>MiPortafolio</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#resenas">Reseñas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Hola, soy Fabiana Velázquez</h1>
+            <p>Desarrollador Front-end con pasión por crear experiencias digitales únicas y funcionales. Aquí podrás ver mis proyectos y dejar tu reseña.</p>
+            <a href="#proyectos" class="btn">Ver mis proyectos</a>
+        </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section class="about" id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">Sobre mí</h2>
+            <div class="about-content">
+                <div class="about-img">
+            
+                <div class="about-text">
+                    <h3>Desarrolladora Front-end con 1 año de experiencia</h3>
+                    <p>Soy una apasionada desarrolladora web especializada en crear sitios web modernos . Me encanta transformar ideas en realidades digitales funcionales y atractivas.</p>
+                    <p>Esto implica trabajar con tecnologías de lado del cliente,como HTML ,CSS, y JavaScript,para crear paginas web interactivas y visualmente atractivas>
+                    <p>Me desempeño en crear la parte visual y funcional de una página web .</p>
+                    <a href="#contacto" class="btn">Contáctame</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="projects" id="proyectos">
+        <div class="container">
+            <h2 class="section-title">Mis Proyectos</h2>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Los proyectos se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Reseñas -->
+    <section class="reviews" id="resenas">
+        <div class="container">
+            <h2 class="section-title">Reseñas</h2>
+            <div class="reviews-container">
+                <!-- Formulario de reseña -->
+                <div class="rating-form">
+                    <h3>Deja tu reseña</h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label for="name">Tu nombre:</label>
+                            <input type="text" id="name" class="form-control" placeholder="Ej: María González" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tu calificación:</label>
+                            <div class="stars-rating" id="starsRating">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                            <input type="hidden" id="rating" value="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Tu reseña:</label>
+                            <textarea id="comment" class="form-control" placeholder="¿Qué opinas de mi portafolio y proyectos?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Enviar reseña</button>
+                    </form>
+                </div>
+
+                <!-- Lista de reseñas -->
+                <div class="reviews-list" id="reviewsList">
+                    <!-- Las reseñas se cargarán dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Mi Portafolio</h3>
+                    <p>Este es mi espacio digital donde muestro mis proyectos y habilidades como desarrollador web.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-codepen"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#resenas">Reseñas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> Fabiana miportafolio.dev</p>
+                    <p><i class="fas fa-phone"></i> +53 59381359</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Santiago de Cuba,Cuba</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Mi Portafolio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de proyectos (normalmente vendrían de una API o base de datos)
+        const projects = [
+            {
+                id: 1,
+                title: "E-commerce React",
+                description: "Tienda en línea completa con carrito de compras, autenticación de usuarios y pasarela de pago.",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+                link: "#"
+            },
+            {
+                id: 2,
+                title: "Web de Tareas",
+                description: "Web para gestión de tareas con arrastrar y soltar, categorías y recordatorios.",
+                image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["JavaScript", "CSS3", "LocalStorage"],
+                link: "#"
+            },
+            {
+                id: 3,
+                title: "Dashboard Analítico",
+                description: "Panel de control interactivo con gráficos y visualización de datos en tiempo real.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["Vue.js", "D3.js", "Firebase"],
+                link: "#"
+            },
+            {
+                id: 4,
+                title: "Blog Personal",
+                description: "Blog responsivo con sistema de comentarios, búsqueda y categorías.",
+                image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["HTML5", "PHP", "MySQL"],
+                link: "#"
+            },
+            {
+                id: 5,
+                title: "Web del Clima",
+                description: "Web que muestra el clima actual y pronóstico para múltiples ciudades.",
+                image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["JavaScript", "API REST", "Bootstrap"],
+                link: "#"
+            },
+            {
+                id: 6,
+                title: "Red Social",
+                description: "Plataforma social con perfiles, publicaciones, likes y mensajes privados.",
+                image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
+                technologies: ["React", "Express", "Socket.io", "PostgreSQL"],
+                link: "#"
+            }
+        ];
+
+        // Reseñas de ejemplo
+        const sampleReviews = [
+            {
+                id: 1,
+                name: "Carlos Martínez",
+                rating: 5,
+                comment: "Excelente portafolio. Los proyectos son muy profesionales y el diseño es impecable. ¡Gran trabajo!",
+                date: "2025-4-19"
+            },
+            {
+                id: 2,
+                name: "Ana López",
+                rating: 4,
+                comment: "Me encanta la organización y presentación de tus proyectos. Muy inspirador para otros desarrolladores.",
+                date: "2024-9-10"
+            },
+            {
+                id: 3,
+                name: "David García",
+                rating: 5,
+                comment: "El sistema de reseñas es una idea brillante. El portafolio en general demuestra tus habilidades técnicas y de diseño.",
+                date: "2025-10-05"
+            }
+        ];
+
+        // Variables globales
+        let reviews = [...sampleReviews];
+        let currentRating = 0;
+
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar proyectos
+            loadProjects();
+            
+            // Cargar reseñas
+            loadReviews();
+            
+            // Configurar estrellas de calificación
+            setupStarRating();
+            
+            // Configurar formulario de reseña
+            setupReviewForm();
+            
+            // Configurar menú móvil
+            setupMobileMenu();
+            
+            // Configurar smooth scrolling para enlaces internos
+            setupSmoothScrolling();
+        });
+
+        // Cargar proyectos en la cuadrícula
+        function loadProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                
+                // Crear etiquetas de tecnologías
+                const techTags = project.technologies.map(tech => 
+                    `<span class="tech-tag">${tech}</span>`
+                ).join('');
+                
+                projectCard.innerHTML = `
+                    <div class="project-img">
+                        <img src="${project.image}" alt="${project.title}">
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-tech">
+                            ${techTags}
+                        </div>
+                        <a href="${project.link}" class="btn" target="_blank">Ver proyecto</a>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Cargar reseñas en la lista
+        function loadReviews() {
+            const reviewsList = document.getElementById('reviewsList');
+            reviewsList.innerHTML = '';
+            
+            // Ordenar reseñas por fecha (más recientes primero)
+            reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            reviews.forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'review-card';
+                
+                // Crear estrellas según la calificación
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                
+                // Formatear fecha
+                const formattedDate = new Date(review.date).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                reviewCard.innerHTML = `
+                    <div class="review-header">
+                        <div class="reviewer-name">${review.name}</div>
+                        <div class="review-date">${formattedDate}</div>
+                    </div>
+                    <div class="review-stars">${stars}</div>
+                    <div class="review-text">${review.comment}</div>
+                `;
+                
+                reviewsList.appendChild(reviewCard);
+            });
+        }
+
+        // Configurar el sistema de estrellas para calificación
+        function setupStarRating() {
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    currentRating = value;
+                    ratingInput.value = value;
+                    
+                    // Actualizar visualización de estrellas
+                    stars.forEach((s, index) => {
+                        if (index < value) {
+                            s.innerHTML = '<i class="fas fa-star"></i>';
+                            s.classList.add('active');
+                        } else {
+                            s.innerHTML = '<i class="far fa-star"></i>';
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+                
+                // Efecto hover
+                star.addEventListener('mouseover', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    
+                    stars.forEach((s, index) => {
+                        if (index < value) {
+                            s.innerHTML = '<i class="fas fa-star"></i>';
+                        } else {
+                            s.innerHTML = '<i class="far fa-star"></i>';
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseout', function() {
+                    stars.forEach((s, index) => {
+                        if (index < currentRating) {
+                            s.innerHTML = '<i class="fas fa-star"></i>';
+                        } else {
+                            s.innerHTML = '<i class="far fa-star"></i>';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Configurar el formulario de reseña
+        function setupReviewForm() {
+            const reviewForm = document.getElementById('reviewForm');
+            
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const rating = parseInt(document.getElementById('rating').value);
+                const comment = document.getElementById('comment').value.trim();
+                
+                // Validar que se haya seleccionado una calificación
+                if (rating === 0) {
+                    alert('Por favor, selecciona una calificación con las estrellas.');
+                    return;
+                }
+                
+                // Crear nueva reseña
+                const newReview = {
+                    id: reviews.length + 1,
+                    name: name || 'Anónimo',
+                    rating: rating,
+                    comment: comment,
+                    date: new Date().toISOString().split('T')[0] // Fecha actual en formato YYYY-MM-DD
+                };
+                
+                // Agregar la nueva reseña
+                reviews.unshift(newReview);
+                
+                // Actualizar la lista de reseñas
+                loadReviews();
+                
+                // Mostrar mensaje de confirmación
+                alert('¡Gracias por tu reseña! Se ha publicado correctamente.');
+                
+                // Resetear el formulario
+                reviewForm.reset();
+                
+                // Resetear estrellas
+                const stars = document.querySelectorAll('.star');
+                stars.forEach(star => {
+                    star.innerHTML = '<i class="far fa-star"></i>';
+                    star.classList.remove('active');
+                });
+                
+                currentRating = 0;
+                document.getElementById('rating').value = 0;
+            });
+        }
+
+        // Configurar menú móvil
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                // Cambiar ícono
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // Configurar smooth scrolling para enlaces internos
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
